@@ -1,9 +1,17 @@
-import { Button } from '@/components/ui/button';
+import { Avatar, AvatarFallback, AvatarImage, Button, Input, Spinner } from '@/components/ui';
 
 export default function Home() {
   return (
-    <Button variant="default" size="default">
-      Hello, World!
-    </Button>
+    <>
+      <Avatar>
+        <AvatarImage src="https://github.com/shadcn.png" />
+        <AvatarFallback>CN</AvatarFallback>
+      </Avatar>
+      <Input />
+      <Button variant="default" size="default">
+        Hello, World!
+      </Button>
+      <Spinner />
+    </>
   );
 }
