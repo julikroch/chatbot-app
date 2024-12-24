@@ -1,17 +1,14 @@
-import { Avatar, AvatarFallback, AvatarImage, Button, Input, Spinner } from '@/components/ui';
+import ChatComponent from '@/components/ChatboxContainer';
+import type { Message } from '@/types';
 
 export default function Home() {
+  // Why is this here?
+  const initialMessages: Message[] = [];
+
   return (
-    <>
-      <Avatar>
-        <AvatarImage src="https://github.com/shadcn.png" />
-        <AvatarFallback>CN</AvatarFallback>
-      </Avatar>
-      <Input />
-      <Button variant="default" size="default">
-        Hello, World!
-      </Button>
-      <Spinner />
-    </>
+    <div className="container mx-auto p-4">
+      <h1 className="text-3xl font-bold mb-6 text-center">Welcome to the Chat Application</h1>
+      <ChatComponent initialMessages={initialMessages} />
+    </div>
   );
 }
