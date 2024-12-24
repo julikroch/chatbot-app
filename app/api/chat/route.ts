@@ -1,7 +1,7 @@
 import { type NextRequest, NextResponse } from 'next/server';
-import { BOT_RESPONSES } from '@/constants';
-import { MessageAuthorEnum } from '@/enums';
-import type { Message } from '@/types';
+import { BOT_RESPONSES } from '@/common/constants';
+import { MessageAuthorEnum } from '@/common/enums';
+import type { Message } from '@/common/types';
 import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();

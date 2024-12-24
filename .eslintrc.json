@@ -82,17 +82,8 @@
     "no-restricted-imports": [
       "error",
       {
-        "patterns": [
-          "src/*",
-          "*/**/."
-        ],
-        "paths": [
-          "../",
-          "..",
-          "./",
-          ".",
-          "lodash"
-        ]
+        "patterns": ["src/*", "*/**/."],
+        "paths": ["../", "..", "./", ".", "lodash"]
       }
     ],
     "no-shadow": "off",
@@ -104,25 +95,13 @@
       "warn",
       {
         "blankLine": "always",
-        "prev": [
-          "const",
-          "let",
-          "var"
-        ],
+        "prev": ["const", "let", "var"],
         "next": "*"
       },
       {
         "blankLine": "any",
-        "prev": [
-          "const",
-          "let",
-          "var"
-        ],
-        "next": [
-          "const",
-          "let",
-          "var"
-        ]
+        "prev": ["const", "let", "var"],
+        "next": ["const", "let", "var"]
       },
       {
         "blankLine": "always",
@@ -139,33 +118,17 @@
           "while",
           "try"
         ],
-        "next": [
-          "const",
-          "let",
-          "var",
-          "class",
-          "if",
-          "for",
-          "do",
-          "while",
-          "try"
-        ]
+        "next": ["const", "let", "var", "class", "if", "for", "do", "while", "try"]
       },
       {
         "blankLine": "always",
-        "prev": [
-          "import"
-        ],
+        "prev": ["import"],
         "next": "*"
       },
       {
         "blankLine": "any",
-        "prev": [
-          "import"
-        ],
-        "next": [
-          "import"
-        ]
+        "prev": ["import"],
+        "next": ["import"]
       }
     ],
     "react/jsx-no-lambda": "off",
@@ -174,9 +137,7 @@
     "react/prop-types": "off",
     "require-atomic-updates": "off",
     "sort-keys": "off",
-    "arrow-body-style": [
-      "error"
-    ],
+    "arrow-body-style": ["error"],
     "react/jsx-curly-brace-presence": [
       "error",
       {
@@ -206,11 +167,7 @@
     "@typescript-eslint/member-ordering": [
       "warn",
       {
-        "default": [
-          "field",
-          "constructor",
-          "method"
-        ]
+        "default": ["field", "constructor", "method"]
       }
     ],
     "@typescript-eslint/no-array-constructor": "off",
@@ -219,30 +176,15 @@
       {
         "groups": [
           // Side effect imports.
-          [
-            "^\\u0000"
-          ],
+          ["^\\u0000"],
           // Packages.
-          [
-            "^[a-z]",
-            "^@"
-          ],
+          ["^[a-z]", "^@"],
           // Style imports.
-          [
-            "^.+\\.svg$",
-            "^.+\\.s?css$"
-          ],
+          ["^.+\\.svg$", "^.+\\.s?css$"],
           // Internal packages.
-          [
-            "^@mocks",
-            "^@theme"
-          ],
+          ["^@mocks", "^@theme"],
           // start with @with our convention, start with capital letter, start with dot (relative path), start with src
-          [
-            "^[A-Z]",
-            "^\\.",
-            "^src"
-          ]
+          ["^[A-Z]", "^\\.", "^src"]
         ]
       }
     ]

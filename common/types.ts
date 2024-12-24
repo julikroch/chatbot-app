@@ -1,4 +1,4 @@
-import type { MessageAuthorEnum } from '@/enums';
+import type { MessageAuthorEnum } from '@/common/enums';
 
 export interface Message {
   id: string;

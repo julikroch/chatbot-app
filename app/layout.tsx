@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
-import { cn } from '@/lib/utils';
+import { NavigationMenu } from '@/common/components';
+import { cn } from '@/common/utils';
 
 import './globals.css';
 
@@ -19,7 +20,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={cn('bg-background min-h-screen font-sans antialiased', inter.variable)}>
-        {children}
+        <NavigationMenu />
+        <main className="container mx-auto px-4">{children}</main>
       </body>
     </html>
   );

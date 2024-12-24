@@ -1,6 +1,8 @@
 'use client';
 
 import { type FormEvent, useState } from 'react';
+import { MessageAuthorEnum } from '@/common/enums';
+import type { ChatComponentProps, Message } from '@/common/types';
 import {
   Alert,
   AlertDescription,
@@ -18,11 +20,8 @@ import {
   Separator,
   Spinner,
 } from '@/components/ui';
-import { MessageAuthorEnum } from '@/enums';
-import type { ChatComponentProps, Message } from '@/types';
 
 export default function ChatBoxContainer({ initialMessages = [] }: ChatComponentProps) {
-
   // To much useStates
   const [userName, setUserName] = useState<string>('');
   const [messages, setMessages] = useState<Message[]>(initialMessages);

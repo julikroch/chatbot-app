@@ -1,3 +1,4 @@
+import type { Chat } from '@/common/types';
 import {
   Avatar,
   AvatarFallback,
@@ -8,7 +9,6 @@ import {
   ScrollArea,
   Separator,
 } from '@/components/ui';
-import type { Chat } from '@/types';
 
 interface ChatHistoryCardProps {
   chat: Chat;
