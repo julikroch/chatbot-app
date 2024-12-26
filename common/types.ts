@@ -21,3 +21,5 @@ export interface User {
 export interface ChatComponentProps {
   initialMessages?: Message[];
 }
+
+export type LoggerMessages = string | Error;

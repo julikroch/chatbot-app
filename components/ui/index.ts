@@ -3,6 +3,8 @@ export * from './avatar';
 export * from './button';
 export * from './card';
 export * from './input';
+export * from './link';
+export * from './navigation-menu';
 export * from './scroll-area';
 export * from './separator';
 export * from './spinner';
