@@ -2,7 +2,10 @@ export * from './alert';
 export * from './avatar';
 export * from './button';
 export * from './card';
+export * from './dialog';
+export * from './form';
 export * from './input';
+export * from './label'
 export * from './link';
 export * from './navigation-menu';
 export * from './scroll-area';

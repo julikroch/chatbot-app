@@ -1,9 +1,21 @@
 import { ChevronRight } from 'lucide-react';
+import { getAllUsers } from '@/common/api/queries';
 import { CommonPathnames } from '@/common/enums';
-import { UserLogin } from '@/components/UserLogin';
 import { Link } from '@/components/ui';
+import { UserLogin } from '@/components/UserLogin';
 
-export default function Home() {
+export default async function Home() {
+  const { users, error } = await getAllUsers();
+
+  if (error) {
+    return (
+      <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100">
+        <h1 className="text-6xl font-bold text-gray-900 mb-4">Oops!</h1>
+        <p className="text-xl text-gray-700 mb-8">An error ocurred, please try again later.</p>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-gray-100">
       <header className="bg-white shadow">
@@ -20,7 +32,7 @@ export default function Home() {
         </div>
       </header>
       <main>
-        <UserLogin />
+        <UserLogin users={users} />
       </main>
     </div>
   );

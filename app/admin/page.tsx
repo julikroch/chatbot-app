@@ -1,10 +1,9 @@
 import type { Chat } from '@/common/types';
-import ChatHistoryCard from '@/components/ChatHistoryCard';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui';
 
 async function getChatHistories(): Promise<Chat[]> {
   // Check this URL
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/chat-histories`, {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/user`, {
     cache: 'no-store',
   });
 
@@ -43,14 +42,14 @@ export default async function AdminPage() {
     );
   }
 
-  return (
-    <div className="space-y-6">
-      <h2 className="text-2xl font-bold">Chat Histories</h2>
-      <div className="grid gap-4">
-        {chats.map(chat => (
-          <ChatHistoryCard key={chat.id} chat={chat} />
-        ))}
-      </div>
-    </div>
-  );
+  // return (
+  //   <div className="space-y-6">
+  //     <h2 className="text-2xl font-bold">Chat Histories</h2>
+  //     <div className="grid gap-4">
+  //       {chats.map(chat => (
+  //         <ChatHistoryCard key={chat.id} chat={chat} />
+  //       ))}
+  //     </div>
+  //   </div>
+  // );
 }

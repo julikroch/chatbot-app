@@ -1,25 +1,26 @@
-import type { MessageAuthorEnum } from '@/common/enums';
+import type { MessageAuthor } from '@/common/enums';
 
 export interface Message {
   id: string;
+  chatName: string;
   content: string;
-  author: MessageAuthorEnum;
+  author: MessageAuthor;
   createdAt: string;
 }
 
 export interface Chat {
-  id: string;
-  user: User;
+  chatName: string;
+  userName: User;
   messages: Message[];
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface User {
-  id: string;
-  name: string;
-}
-
-export interface ChatComponentProps {
-  initialMessages?: Message[];
+  userName: string;
+  createdAt: string;
+  updatedAt: string;
+  chats: Chat[];
 }
 
 export type LoggerMessages = string | Error;

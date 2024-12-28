@@ -1,17 +1,42 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
 import type { FC } from 'react';
 import { useForm } from 'react-hook-form';
 import type * as z from 'zod';
-import { logger } from '@/common/utils';
+import { createUser } from '@/common/api/mutations';
+import { CommonPathnames } from '@/common/enums';
+import type { User } from '@/common/types';
+import { useUser } from '@/context/UserContext';
 import { zodResolver } from '@hookform/resolvers/zod';
 
-import { Button, Card, CardHeader, CardTitle, Input } from '../ui';
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '../ui/form';
+import {
+  Button,
+  Card,
+  CardHeader,
+  CardTitle,
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+  Input,
+  Spinner,
+} from '../ui';
 import { LoginForm } from './enums';
 import { formSchema } from './schema';
 
-export const UserLogin: FC = () => {
+interface IProps {
+  users: User[];
+}
+
+export const UserLogin: FC<IProps> = ({ users }) => {
+  const router = useRouter();
+  const { setUser } = useUser();
+
+  const userMap = new Map(users.map(user => [user.userName.toLowerCase(), user]));
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -19,8 +44,25 @@ export const UserLogin: FC = () => {
     },
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    logger.info(JSON.stringify(values));
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    const foundUser = userMap.get(values.userName.toLowerCase());
+
+    if (foundUser) {
+      setUser(foundUser);
+      router.push(CommonPathnames.Chats);
+
+      return;
+    }
+
+    const { user, error } = await createUser(values);
+
+    if (error || !user) {
+      return;
+    }
+
+    setUser(user);
+
+    router.push(CommonPathnames.Chats);
   }
 
   return (
@@ -43,8 +85,8 @@ export const UserLogin: FC = () => {
               </FormItem>
             )}
           />
-          <Button type="submit" className="w-full my-6" disabled={false}>
-            Start chatting
+          <Button type="submit" className="w-full my-6" disabled={form.formState.isSubmitting}>
+            {form.formState.isLoading ? <Spinner size="sm" /> : 'Start chatting'}
           </Button>
         </form>
       </Form>
