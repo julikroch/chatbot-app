@@ -1,8 +1,8 @@
 'use client';
 
 import { Inter } from 'next/font/google';
+import { Toaster } from '@/common/ui/sonner';
 import { cn } from '@/common/utils';
-import { Toaster } from '@/components/ui/sonner';
 import { ReactQueryProvider, UserProvider } from '@/provider';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 

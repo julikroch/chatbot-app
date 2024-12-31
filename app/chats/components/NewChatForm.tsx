@@ -20,9 +20,10 @@ import {
   FormMessage,
   Input,
   Spinner,
-} from '@/components/ui';
+} from '@/common/ui';
 import { useUser } from '@/context';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { DialogDescription } from '@radix-ui/react-dialog';
 import { useQueryClient } from '@tanstack/react-query';
 
 import { NewChatFormNames } from '../enums';
@@ -71,6 +72,7 @@ export const NewChatForm = () => {
         <DialogHeader>
           <DialogTitle>Create new chat</DialogTitle>
         </DialogHeader>
+        <DialogDescription>Enter the chat name to create a new chat.</DialogDescription>
         <div className="grid gap-4 py-4">
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)}>

@@ -1,7 +1,7 @@
 import type { FC } from 'react';
 import { MessageAuthor } from '@/common/enums';
 import type { Message } from '@/common/types';
-import { Avatar, AvatarFallback } from '@/components/ui';
+import { Avatar, AvatarFallback } from '@/common/ui';
 
 interface IProps {
   message: Message;

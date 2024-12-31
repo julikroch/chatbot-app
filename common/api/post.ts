@@ -52,7 +52,6 @@ export const createNewMessage = async (
   content: string,
 ): Promise<{ message: string | null; error: string | null }> => {
   try {
-    // Need to add content as body
     const response = await apiClient.post<Message[]>(
       `${CommonEndpoints.Chats}/${userName}/${chatName}`,
       { content },

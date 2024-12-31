@@ -1,11 +1,11 @@
 'use client';
 
 import { redirect, useParams } from 'next/navigation';
+import { useEffect, useRef } from 'react';
 import { useForm } from 'react-hook-form';
 import type * as z from 'zod';
 import { useCreateNewMessage, useGetChat } from '@/common/api';
 import { CommonPathnames, RqKeys } from '@/common/enums';
-import { customToast } from '@/common/utils';
 import {
   Button,
   Card,
@@ -22,7 +22,8 @@ import {
   ScrollArea,
   Separator,
   Spinner,
-} from '@/components/ui';
+} from '@/common/ui';
+import { customToast } from '@/common/utils';
 import { useUser } from '@/context';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useQueryClient } from '@tanstack/react-query';
@@ -39,8 +40,9 @@ export default function Chat() {
   }
 
   const queryClient = useQueryClient();
-
   const params = useParams();
+
+  const lastMessageRef = useRef<HTMLDivElement>(null);
 
   const decodedChatName = params.chatName ? decodeURIComponent(params.chatName as string) : '';
 
@@ -76,6 +78,12 @@ export default function Chat() {
     mutate();
   }
 
+  useEffect(() => {
+    if (lastMessageRef.current) {
+      lastMessageRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, [data?.chat?.messages]);
+
   if (isLoadingMessages) {
     return (
       <div className="w-full max-w-7xl mx-auto flex justify-center py-10">
@@ -87,7 +95,7 @@ export default function Chat() {
   return (
     <Card className="w-full max-w-7xl mx-auto">
       <CardHeader>
-        <CardTitle>{decodedChatName}</CardTitle>
+        <CardTitle>Chat&apos;s name: {decodedChatName}</CardTitle>
       </CardHeader>
       <Separator />
       <CardContent>
@@ -95,8 +103,13 @@ export default function Chat() {
           {!data?.chat?.messages.length ? (
             <EmptyChat />
           ) : (
-            data.chat.messages.map(message => (
-              <ChatHistory key={message.id} message={message} userName={user} />
+            data.chat.messages.map((message, index) => (
+              <div
+                key={message.id}
+                ref={index === (data.chat?.messages?.length ?? 0) - 1 ? lastMessageRef : null}
+              >
+                <ChatHistory message={message} userName={user} />
+              </div>
             ))
           )}
         </ScrollArea>

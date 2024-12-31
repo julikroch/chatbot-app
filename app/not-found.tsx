@@ -1,5 +1,5 @@
 import { CommonPathnames } from '@/common/enums';
-import { Link } from '@/components/ui';
+import { Link } from '@/common/ui';
 
 export default function Custom404() {
   return (

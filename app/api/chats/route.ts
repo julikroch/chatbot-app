@@ -12,7 +12,6 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Invalid input' }, { status: 400 });
     }
 
-    // Validate if the user exists on db
     const user = await prisma.user.findUnique({
       where: { userName },
     });
@@ -21,7 +20,6 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'User not found' }, { status: 404 });
     }
 
-    // Validate if that chat name already exists for that user
     const chat = await prisma.chat.findFirst({
       where: {
         chatName,

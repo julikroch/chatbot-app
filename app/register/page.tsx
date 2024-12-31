@@ -5,7 +5,6 @@ import { useForm } from 'react-hook-form';
 import type * as z from 'zod';
 import { useCreateUser } from '@/common/api';
 import { CommonPathnames } from '@/common/enums';
-import { customToast } from '@/common/utils';
 import {
   Button,
   Card,
@@ -19,7 +18,8 @@ import {
   FormMessage,
   Input,
   Spinner,
-} from '@/components/ui';
+} from '@/common/ui';
+import { customToast } from '@/common/utils';
 import { useUser } from '@/context';
 import { zodResolver } from '@hookform/resolvers/zod';
 

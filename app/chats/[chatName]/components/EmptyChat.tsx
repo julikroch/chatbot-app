@@ -1,4 +1,4 @@
-import { Alert, AlertDescription, AlertTitle } from '@/components/ui';
+import { Alert, AlertDescription, AlertTitle } from '@/common/ui';
 
 export const EmptyChat = () => (
   <Alert className="flex items-center justify-between border-0 px-0 py-5">

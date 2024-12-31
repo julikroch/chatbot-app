@@ -10,7 +10,7 @@ import {
   CardHeader,
   CardTitle,
   Separator,
-} from '@/components/ui';
+} from '@/common/ui';
 
 interface IProps {
   chat: Chat;

@@ -10,7 +10,7 @@ import {
   useFormContext,
 } from 'react-hook-form';
 import { cn } from '@/common/utils';
-import { Label } from '@/components/ui/label';
+import { Label } from '@/common/ui/label';
 import type * as LabelPrimitive from '@radix-ui/react-label';
 import { Slot } from '@radix-ui/react-slot';
 

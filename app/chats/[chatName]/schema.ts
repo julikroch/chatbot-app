@@ -5,6 +5,7 @@ import { ChatboxFormNames } from './enums';
 export const formSchema = z.object({
   [ChatboxFormNames.Message]: z
     .string()
+    .trim()
     .min(1, {
       message: 'Chat name must be at least 1 character.',
     })

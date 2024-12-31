@@ -6,10 +6,6 @@ import { useForm } from 'react-hook-form';
 import type * as z from 'zod';
 import { useGetUser } from '@/common/api';
 import { CommonPathnames } from '@/common/enums';
-import { customToast } from '@/common/utils';
-import { useUser } from '@/context/UserContext';
-import { zodResolver } from '@hookform/resolvers/zod';
-
 import {
   Button,
   Card,
@@ -24,7 +20,11 @@ import {
   Input,
   Link,
   Spinner,
-} from '../ui';
+} from '@/common/ui';
+import { customToast } from '@/common/utils';
+import { useUser } from '@/context/UserContext';
+import { zodResolver } from '@hookform/resolvers/zod';
+
 import { LoginForm } from './enums';
 import { formSchema } from './schema';
 
