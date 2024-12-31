@@ -1,1 +1,2 @@
 npm run tsc-check
+npm run test

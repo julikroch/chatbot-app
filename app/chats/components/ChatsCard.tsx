@@ -17,8 +17,6 @@ interface IProps {
 }
 
 export const ChatsCard: FC<IProps> = ({ chat }) => (
-  // We should change this to avoid repeating the pathname
-
   <Link
     href={`${CommonPathnames.Chats}/[chatName]`}
     as={`${CommonPathnames.Chats}/${chat.chatName}`}

@@ -3,7 +3,6 @@ import { useForm } from 'react-hook-form';
 import type * as z from 'zod';
 import { useCreateNewChat } from '@/common/api';
 import { RqKeys } from '@/common/enums';
-import { customToast } from '@/common/utils';
 import {
   Button,
   Dialog,
@@ -21,6 +20,7 @@ import {
   Input,
   Spinner,
 } from '@/common/ui';
+import { customToast } from '@/common/utils';
 import { useUser } from '@/context';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { DialogDescription } from '@radix-ui/react-dialog';

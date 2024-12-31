@@ -41,7 +41,6 @@ export default function RegisterPage() {
     form.getValues(RegisterForm.UserName),
     response => {
       if (response.error) {
-        // Not so sure if this is an util, check to move it
         return customToast(response.error);
       }
 
