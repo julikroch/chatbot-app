@@ -1,26 +1,48 @@
+import Link from 'next/link';
 import type { FC } from 'react';
+import { CommonPathnames } from '@/common/enums';
 import type { Chat } from '@/common/types';
-import { Card, CardContent, CardHeader, CardTitle, Separator } from '@/components/ui';
+import {
+  Avatar,
+  AvatarFallback,
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+  Separator,
+} from '@/components/ui';
 
 interface IProps {
   chat: Chat;
 }
 
 export const ChatsCard: FC<IProps> = ({ chat }) => (
-  <Card>
-    <CardHeader>
-      <CardTitle className="flex items-center">{chat.chatName}</CardTitle>
-    </CardHeader>
-    <Separator />
-    <CardContent>
-      <div className="flex flex-col py-3 gap-3">
-        <span>
-          <b>Total messages:</b> {chat?.messages?.length ?? 0}
-        </span>
-        <span>
-          <b>Last update:</b> {new Date().toDateString()}
-        </span>
-      </div>
-    </CardContent>
-  </Card>
+  // We should change this to avoid repeating the pathname
+
+  <Link
+    href={`${CommonPathnames.Chats}/[chatName]`}
+    as={`${CommonPathnames.Chats}/${chat.chatName}`}
+    passHref
+    className="hover:opacity-50"
+  >
+    <Card>
+      <CardHeader>
+        <CardTitle className="flex items-center">
+          <Avatar className="w-8 h-8 mr-2">
+            <AvatarFallback>{chat.userName[0].toUpperCase()}</AvatarFallback>
+          </Avatar>
+
+          {chat.chatName}
+        </CardTitle>
+      </CardHeader>
+      <Separator />
+      <CardContent>
+        <div className="flex flex-col py-3 gap-3">
+          <span>
+            <b>Last update:</b> {new Date(chat.updatedAt).toLocaleDateString()}
+          </span>
+        </div>
+      </CardContent>
+    </Card>
+  </Link>
 );

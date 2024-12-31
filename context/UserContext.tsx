@@ -1,9 +1,8 @@
 import { createContext, useContext } from 'react';
-import type { User } from '@/common/types';
 
 interface UserContextType {
-  user: User | null;
-  setUser: (user: User) => void;
+  user: string | null;
+  setUser(userName: string): void;
 }
 
 export const UserContext = createContext<UserContextType | undefined>(undefined);

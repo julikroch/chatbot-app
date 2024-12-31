@@ -1,4 +1,5 @@
 import { type ClassValue, clsx } from 'clsx';
+import { toast } from 'sonner';
 import { twMerge } from 'tailwind-merge';
 
 import { Logger_Colors } from './enums';
@@ -24,3 +25,12 @@ class Logger {
 }
 
 export const logger = new Logger();
+
+export const customToast = (message: string) =>
+  toast.error(message, {
+    style: {
+      background: '#ff0000',
+      border: '1px solid #ff0000',
+      color: '#fff',
+    },
+  });

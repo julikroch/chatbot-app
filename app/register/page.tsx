@@ -1,15 +1,11 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import type * as z from 'zod';
-import { useGetUser } from '@/common/api';
+import { useCreateUser } from '@/common/api';
 import { CommonPathnames } from '@/common/enums';
 import { customToast } from '@/common/utils';
-import { useUser } from '@/context/UserContext';
-import { zodResolver } from '@hookform/resolvers/zod';
-
 import {
   Button,
   Card,
@@ -22,48 +18,53 @@ import {
   FormLabel,
   FormMessage,
   Input,
-  Link,
   Spinner,
-} from '../ui';
-import { LoginForm } from './enums';
+} from '@/components/ui';
+import { useUser } from '@/context';
+import { zodResolver } from '@hookform/resolvers/zod';
+
+import { RegisterForm } from './enums';
 import { formSchema } from './schema';
 
-export const UserLogin = () => {
+export default function RegisterPage() {
   const router = useRouter();
   const { setUser } = useUser();
-  const [submittedUserName, setSubmittedUserName] = useState<string | null>(null);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      [LoginForm.UserName]: '',
+      [RegisterForm.UserName]: '',
     },
   });
 
-  useGetUser(submittedUserName as string, !!submittedUserName, response => {
-    if (response?.error) {
-      return customToast(response.error);
-    }
+  const { mutate: postUser, isLoading } = useCreateUser(
+    form.getValues(RegisterForm.UserName),
+    response => {
+      if (response.error) {
+        // Not so sure if this is an util, check to move it
+        return customToast(response.error);
+      }
 
-    setUser(submittedUserName as string);
+      setUser(form.getValues(RegisterForm.UserName));
 
-    router.push(CommonPathnames.Chats);
-  });
+      router.push(CommonPathnames.Chats);
+    },
+  );
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    setSubmittedUserName(values.userName);
+    postUser();
   }
 
   return (
     <Card className="sm:w-10/12 lg:w-6/12 mx-auto mt-20">
       <CardHeader>
-        <CardTitle>Login with your user name to start chatting</CardTitle>
+        <CardTitle>Register with your user name to start chatting</CardTitle>
       </CardHeader>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="px-6">
           <FormField
             control={form.control}
-            name={LoginForm.UserName}
+            name={RegisterForm.UserName}
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Username</FormLabel>
@@ -75,19 +76,10 @@ export const UserLogin = () => {
             )}
           />
           <Button type="submit" className="w-full my-6" disabled={form.formState.isSubmitting}>
-            {form.formState.isLoading ? <Spinner size="sm" /> : 'Start chatting'}
+            {form.formState.isLoading || isLoading ? <Spinner size="sm" /> : 'Start chatting'}
           </Button>
         </form>
-
-        <span className="block text-center mb-4">
-          Don&apos;t have a username?{' '}
-          <Link
-            text="Register now"
-            className="hover:opacity-60 ease-in"
-            href={CommonPathnames.Register}
-          />
-        </span>
       </Form>
     </Card>
   );
-};
+}

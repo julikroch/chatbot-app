@@ -10,7 +10,7 @@ export interface Message {
 
 export interface Chat {
   chatName: string;
-  userName: User;
+  userName: string;
   messages: Message[];
   createdAt: string;
   updatedAt: string;

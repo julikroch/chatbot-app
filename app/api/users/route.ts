@@ -11,9 +11,16 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Invalid input' }, { status: 400 });
     }
 
+    const existingUser = await prisma.user.findUnique({
+      where: { userName },
+    });
+
+    if (existingUser) {
+      return NextResponse.json({ error: 'User already exists' }, { status: 400 });
+    }
+
     const newUser = await prisma.user.create({
       data: { userName },
-      include: { chats: true },
     });
 
     return NextResponse.json(newUser);
@@ -22,7 +29,7 @@ export async function POST(req: NextRequest) {
   }
 }
 
-export async function GET(req: NextRequest) {
+export async function GET() {
   try {
     const users = await prisma.user.findMany({
       include: {

@@ -11,12 +11,6 @@
     "tsc-check": "npx tsc --noEmit --pretty",
     "format": "prettier --write ."
   },
-  "lint-staged": {
-    "*.{js,jsx,ts,tsx,json,css,scss,md}": [
-      "prettier --write",
-      "eslint --fix"
-    ]
-  },
   "dependencies": {
     "@hookform/resolvers": "^3.9.1",
     "@prisma/client": "^6.1.0",
@@ -27,6 +21,7 @@
     "@radix-ui/react-scroll-area": "^1.2.2",
     "@radix-ui/react-separator": "^1.1.1",
     "@radix-ui/react-slot": "^1.1.1",
+    "axios": "^1.7.9",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "lucide-react": "^0.468.0",

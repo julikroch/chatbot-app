@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { toast } from 'sonner';
 import type * as z from 'zod';
-import { createNewChat } from '@/common/api/mutations';
+import { useCreateNewChat } from '@/common/api';
+import { RqKeys } from '@/common/enums';
+import { customToast } from '@/common/utils';
 import {
   Button,
   Dialog,
@@ -22,12 +23,15 @@ import {
 } from '@/components/ui';
 import { useUser } from '@/context';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useQueryClient } from '@tanstack/react-query';
 
 import { NewChatFormNames } from '../enums';
 import { formSchema } from '../schema';
 
 export const NewChatForm = () => {
   const [openDialog, setOpenDialog] = useState(false);
+
+  const queryClient = useQueryClient();
 
   const { user } = useUser();
 
@@ -38,23 +42,24 @@ export const NewChatForm = () => {
     },
   });
 
-  const onSubmit = async (values: z.infer<typeof formSchema>) => {
-    const { error } = await createNewChat({
-      userName: user?.userName as string,
-      chatName: values.chatName,
-    });
+  const { mutate, isLoading } = useCreateNewChat(
+    user as string,
+    form.getValues(NewChatFormNames.ChatName),
+    response => {
+      if (response.error) {
+        return customToast(response.error);
+      }
 
-    if (error) {
-      return toast.error(error, {
-        style: {
-          background: '#ff0000',
-          border: '1px solid #ff0000',
-          color: '#fff',
-        },
-      });
-    }
+      queryClient.invalidateQueries([RqKeys.CHATS, user]);
 
-    setOpenDialog(false);
+      setOpenDialog(false);
+
+      form.reset();
+    },
+  );
+
+  const onSubmit = async () => {
+    mutate();
   };
 
   return (
@@ -88,7 +93,7 @@ export const NewChatForm = () => {
                   className="w-full my-6"
                   disabled={form.formState.isSubmitting}
                 >
-                  {form.formState.isLoading ? <Spinner size="sm" /> : 'Create'}
+                  {isLoading ? <Spinner size="sm" /> : 'Create'}
                 </Button>
               </DialogFooter>
             </form>

@@ -1,25 +1,24 @@
-import { CommonEndpoints } from '../enums';
-import type { User } from '../types';
-import { logger } from '../utils';
+import { useQuery } from '@tanstack/react-query';
 
-export const getAllUsers = async (): Promise<{ users: User[]; error: string | null }> => {
-  try {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}${CommonEndpoints.Users}`, {
-      cache: 'no-store',
-    });
+import { RqKeys } from '../enums';
+import { getChat, getChats, getUser } from './get';
 
-    if (!response.ok) {
-      const { error } = await response.json();
+export const useGetUser = (
+  userName: string,
+  enabled: boolean,
+  onSuccess?: (response: { error: string | null }) => void,
+) =>
+  useQuery([RqKeys.USERS, userName], () => getUser(userName), {
+    enabled,
+    onSuccess,
+  });
 
-      throw new Error(error);
-    }
+export const useGetChats = (userName: string, enabled: boolean) =>
+  useQuery([RqKeys.CHATS, userName], () => getChats(userName), {
+    enabled,
+  });
 
-    const users: User[] = await response.json();
-
-    return { users, error: null };
-  } catch (err) {
-    logger.error(`Error fetching users: ${err as string}`);
-
-    return { users: [], error: (err as Error).message };
-  }
-};
+export const useGetChat = (userName: string, chatName: string, enabled: boolean) =>
+  useQuery([RqKeys.CHATS, userName, chatName], () => getChat(userName, chatName), {
+    enabled,
+  });

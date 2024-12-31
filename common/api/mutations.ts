@@ -1,54 +1,30 @@
-import { CommonEndpoints } from '../enums';
-import type { Chat, User } from '../types';
-import { logger } from '../utils';
+import { useMutation } from '@tanstack/react-query';
 
-export const createUser = async (values: {
-  userName: string;
-}): Promise<{ user: User | null; error: string | null }> => {
-  try {
-    const response = await fetch(CommonEndpoints.Users, {
-      body: JSON.stringify(values),
-      method: 'POST',
-    });
+import { createNewChat, createNewMessage, createUser } from './post';
 
-    if (!response.ok) {
-      const { error } = await response.json();
+export const useCreateUser = (
+  userName: string,
+  onSuccess: (response: { error: string | null }) => void,
+) =>
+  useMutation(() => createUser({ userName }), {
+    onSuccess,
+  });
 
-      throw new Error(error);
-    }
+export const useCreateNewChat = (
+  userName: string,
+  chatName: string,
+  onSuccess: (response: { error: string | null }) => void,
+) =>
+  useMutation(() => createNewChat({ userName, chatName }), {
+    onSuccess,
+  });
 
-    const user: User = await response.json();
-
-    return { user, error: null };
-  } catch (error) {
-    logger.error(`Error creating user: ${error as string}`);
-
-    return { user: null, error: (error as Error).message };
-  }
-};
-
-export const createNewChat = async (values: {
-  userName: string;
-  chatName: string;
-}): Promise<{ chat: Chat | null; error: string | null }> => {
-  try {
-    const response = await fetch(CommonEndpoints.Chat, {
-      body: JSON.stringify(values),
-      method: 'POST',
-    });
-
-    if (!response.ok) {
-      const { error } = await response.json();
-
-      throw new Error(error);
-    }
-
-    const chat: Chat = await response.json();
-
-    return { chat, error: null };
-  } catch (error) {
-    logger.error(`Error creating chat: ${error as string}`);
-
-    return { chat: null, error: (error as Error).message };
-  }
-};
+export const useCreateNewMessage = (
+  userName: string,
+  chatName: string,
+  content: string,
+  onSuccess: (response: { error: string | null }) => void,
+) =>
+  useMutation(() => createNewMessage(userName, chatName, content), {
+    onSuccess,
+  });
