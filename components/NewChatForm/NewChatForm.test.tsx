@@ -7,8 +7,8 @@ import { act, fireEvent, render, screen } from '@testing-library/react';
 
 import { NewChatForm } from './NewChatForm';
 
-jest.mock('../../../common/api');
-jest.mock('../../../context');
+jest.mock('../../common/api');
+jest.mock('../../context');
 jest.mock('@tanstack/react-query');
 
 describe('NewChatForm', () => {
