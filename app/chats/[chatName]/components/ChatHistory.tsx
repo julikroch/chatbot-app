@@ -1,7 +1,8 @@
 import type { FC } from 'react';
 import { MessageAuthor } from '@/common/enums';
 import type { Message } from '@/common/types';
-import { Avatar, AvatarFallback } from '@/common/ui';
+import { customDateForMessages } from '@/common/utils';
+import { Avatar, AvatarFallback } from '@/components/ui';
 
 interface IProps {
   message: Message;
@@ -26,10 +27,15 @@ export const ChatHistory: FC<IProps> = ({ message, userName }) => {
         </Avatar>
         <div
           className={`mx-2 py-3 px-4 rounded-lg ${
-            message.author === 'user' ? 'bg-primary text-primary-foreground' : 'bg-muted'
+            message.author === MessageAuthor.User
+              ? 'bg-primary text-primary-foreground'
+              : 'bg-muted'
           }`}
         >
           {message.content}
+          <span className="text-xs block text-right mt-1">
+            {customDateForMessages(message.createdAt)}
+          </span>
         </div>
       </div>
     </div>

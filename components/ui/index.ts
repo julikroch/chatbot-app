@@ -10,4 +10,5 @@ export * from './link';
 export * from './navigation-menu';
 export * from './scroll-area';
 export * from './separator';
+export * from './sonner';
 export * from './spinner';

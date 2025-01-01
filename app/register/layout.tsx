@@ -1,7 +1,7 @@
 import { ChevronRight } from 'lucide-react';
 import type { ReactNode } from 'react';
 import { CommonPathnames } from '@/common/enums';
-import { Link } from '@/common/ui';
+import { Link } from '@/components/ui';
 
 export default function ChatsLayout({ children }: { children: ReactNode }) {
   return (

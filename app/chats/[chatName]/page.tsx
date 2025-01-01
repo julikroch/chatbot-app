@@ -22,7 +22,7 @@ import {
   ScrollArea,
   Separator,
   Spinner,
-} from '@/common/ui';
+} from '@/components/ui';
 import { customToast } from '@/common/utils';
 import { useUser } from '@/context';
 import { zodResolver } from '@hookform/resolvers/zod';

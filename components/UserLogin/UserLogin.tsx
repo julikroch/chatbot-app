@@ -6,6 +6,7 @@ import { useForm } from 'react-hook-form';
 import type * as z from 'zod';
 import { useGetUser } from '@/common/api';
 import { CommonPathnames } from '@/common/enums';
+import { customToast } from '@/common/utils';
 import {
   Button,
   Card,
@@ -20,8 +21,7 @@ import {
   Input,
   Link,
   Spinner,
-} from '@/common/ui';
-import { customToast } from '@/common/utils';
+} from '@/components/ui';
 import { useUser } from '@/context/UserContext';
 import { zodResolver } from '@hookform/resolvers/zod';
 
@@ -78,16 +78,15 @@ export const UserLogin = () => {
             {form.formState.isLoading ? <Spinner size="sm" /> : 'Start chatting'}
           </Button>
         </form>
-
-        <span className="block text-center mb-4">
-          Don&apos;t have a username?{' '}
-          <Link
-            text="Register now"
-            className="hover:opacity-60 ease-in"
-            href={CommonPathnames.Register}
-          />
-        </span>
       </Form>
+      <p className=" text-center mb-4">
+        Don&apos;t have a username?{' '}
+        <Link
+          text="Register now"
+          className="hover:opacity-60 ease-in"
+          href={CommonPathnames.Register}
+        />
+      </p>
     </Card>
   );
 };

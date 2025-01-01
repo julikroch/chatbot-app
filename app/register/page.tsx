@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form';
 import type * as z from 'zod';
 import { useCreateUser } from '@/common/api';
 import { CommonPathnames } from '@/common/enums';
+import { customToast } from '@/common/utils';
 import {
   Button,
   Card,
@@ -18,8 +19,7 @@ import {
   FormMessage,
   Input,
   Spinner,
-} from '@/common/ui';
-import { customToast } from '@/common/utils';
+} from '@/components/ui';
 import { useUser } from '@/context';
 import { zodResolver } from '@hookform/resolvers/zod';
 
@@ -75,7 +75,7 @@ export default function RegisterPage() {
             )}
           />
           <Button type="submit" className="w-full my-6" disabled={form.formState.isSubmitting}>
-            {form.formState.isLoading || isLoading ? <Spinner size="sm" /> : 'Start chatting'}
+            {isLoading ? <Spinner size="sm" data-testid='loading-spinner' /> : 'Start chatting'}
           </Button>
         </form>
       </Form>

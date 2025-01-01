@@ -18,5 +18,6 @@ describe('EmptyChatHistory', () => {
       </QueryClientProvider>,
     );
     expect(screen.getByText('No chat histories found')).toBeInTheDocument();
+    expect(screen.getByText('Start a new chat to see it here.')).toBeInTheDocument();
   });
 });

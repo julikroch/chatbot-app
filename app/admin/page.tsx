@@ -1,5 +1,5 @@
 import type { Chat } from '@/common/types';
-import { Alert, AlertDescription, AlertTitle } from '@/common/ui';
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui';
 
 async function getChatHistories(): Promise<Chat[]> {
   // Check this URL

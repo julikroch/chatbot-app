@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import type * as z from 'zod';
 import { useCreateNewChat } from '@/common/api';
 import { RqKeys } from '@/common/enums';
+import { customToast } from '@/common/utils';
 import {
   Button,
   Dialog,
@@ -19,8 +20,7 @@ import {
   FormMessage,
   Input,
   Spinner,
-} from '@/common/ui';
-import { customToast } from '@/common/utils';
+} from '@/components/ui';
 import { useUser } from '@/context';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { DialogDescription } from '@radix-ui/react-dialog';
@@ -95,7 +95,7 @@ export const NewChatForm = () => {
                   className="w-full my-6"
                   disabled={form.formState.isSubmitting}
                 >
-                  {isLoading ? <Spinner size="sm" /> : 'Create'}
+                  {isLoading ? <Spinner size="sm" data-testid="loading-spinner" /> : 'Create'}
                 </Button>
               </DialogFooter>
             </form>

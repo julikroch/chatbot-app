@@ -1,7 +1,7 @@
 import { ChevronRight } from 'lucide-react';
-import { UserLogin } from '@/common/components/UserLogin';
 import { CommonPathnames } from '@/common/enums';
-import { Link } from '@/common/ui';
+import { Link } from '@/components/ui';
+import { UserLogin } from '@/components/UserLogin';
 
 export default async function Home() {
   return (

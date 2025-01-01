@@ -4,7 +4,7 @@ import { ChevronRight } from 'lucide-react';
 import { redirect } from 'next/navigation';
 import { useGetChats } from '@/common/api';
 import { CommonPathnames } from '@/common/enums';
-import { Link } from '@/common/ui';
+import { Link } from '@/components/ui';
 import { useUser } from '@/context/UserContext';
 
 import { ChatHistory, EmptyChatHistory } from './components';

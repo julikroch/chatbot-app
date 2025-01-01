@@ -1,6 +1,6 @@
 import type { FC } from 'react';
 import type { Chat } from '@/common/types';
-import { Spinner } from '@/common/ui';
+import { Spinner } from '@/components/ui';
 import { useUser } from '@/context';
 
 import { ChatsCard } from './ChatsCard';

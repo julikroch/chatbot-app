@@ -1,4 +1,4 @@
-import { Alert, AlertDescription, AlertTitle } from '@/common/ui';
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui';
 
 import { NewChatForm } from './NewChatForm';
 
