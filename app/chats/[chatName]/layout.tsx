@@ -13,7 +13,7 @@ export default function ChatsLayout({ children }: { children: ReactNode }) {
             href={CommonPathnames.Chats}
             text={
               <span className="flex items-center">
-                Go back to chats
+                Chats
                 <ChevronRight size={16} />
               </span>
             }

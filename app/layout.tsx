@@ -23,7 +23,7 @@ export default function RootLayout({
       >
         <ReactQueryProvider>
           <UserProvider>
-            <main className="container mx-auto px-4">{children}</main>
+            <main className="container mx-auto lg:px-4">{children}</main>
             <Toaster />
           </UserProvider>
           <ReactQueryDevtools initialIsOpen={false} />

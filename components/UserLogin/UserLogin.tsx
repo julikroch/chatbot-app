@@ -57,7 +57,9 @@ export const UserLogin = () => {
   return (
     <Card className="sm:w-10/12 lg:w-6/12 mx-auto mt-20">
       <CardHeader>
-        <CardTitle>Login with your user name to start chatting</CardTitle>
+        <CardTitle className="leading-normal">
+          Login with your user name to start chatting
+        </CardTitle>
       </CardHeader>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="px-6">

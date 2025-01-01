@@ -13,7 +13,7 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
             href={CommonPathnames.Home}
             text={
               <span className="flex items-center">
-                Go back to home <ChevronRight size={16} />
+                Home <ChevronRight size={16} />
               </span>
             }
           />

@@ -55,7 +55,7 @@ export default function RegisterPage() {
   }
 
   return (
-    <Card className="sm:w-10/12 lg:w-6/12 mx-auto mt-20">
+    <Card className="sm:w-10/12 lg:w-6/12 mx-2 lg:mx-auto mt-20">
       <CardHeader>
         <CardTitle>Register with your user name to start chatting</CardTitle>
       </CardHeader>

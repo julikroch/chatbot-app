@@ -44,7 +44,7 @@ export const ChatsCard: FC<IProps> = ({ chat, isEditable }) => {
         <CardContent>
           <div className="flex flex-col py-3 gap-3">
             <span>
-              <b>Last update:</b> {customDateFormat(chat.updatedAt)}
+              <b>Created at:</b> {customDateFormat(chat.createdAt)}
             </span>
           </div>
         </CardContent>

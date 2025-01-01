@@ -8,7 +8,7 @@ export default function Custom404() {
       <p className="text-xl text-gray-700 mb-8">
         The page that you are looking for does not exist.
       </p>
-      <Link href={CommonPathnames.Home} text="Go back to home" />
+      <Link href={CommonPathnames.Home} text="Home" />
     </div>
   );
 }

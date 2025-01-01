@@ -30,7 +30,7 @@ export const UsersCard: FC<IProps> = ({ user }) => {
   };
 
   return (
-    <Card className="pointer" onClick={handleClickedUser}>
+    <Card className="cursor-pointer hover:opacity-50" onClick={handleClickedUser}>
       <CardHeader>
         <CardTitle className="flex items-center">
           <Avatar className="w-8 h-8 mr-2">

@@ -19,7 +19,7 @@ export const ChatsHistory: FC<IProps> = ({ isLoading, data, isEditable }) => {
   const { user } = useUser();
 
   return (
-    <div className="max-w-8xl mx-auto py-6 sm:px-6 lg:px-8">
+    <div className="max-w-8xl mx-auto py-6 px-6 lg:px-8">
       <div className="space-y-6">
         <h2 className="text-2xl font-bold">{user}&apos;s previous chats</h2>
         {isLoading ? (
