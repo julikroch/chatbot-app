@@ -75,7 +75,7 @@ export default function RegisterPage() {
             )}
           />
           <Button type="submit" className="w-full my-6" disabled={form.formState.isSubmitting}>
-            {isLoading ? <Spinner size="sm" data-testid='loading-spinner' /> : 'Start chatting'}
+            {isLoading ? <Spinner size="sm" data-testid="loading-spinner" /> : 'Start chatting'}
           </Button>
         </form>
       </Form>
