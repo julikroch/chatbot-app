@@ -1,13 +1,7 @@
 {
   "compilerOptions": {
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
-    "types": [
-      "jest"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "types": ["jest"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -25,20 +19,9 @@
       }
     ],
     "paths": {
-      "@/*": [
-        "./*"
-      ]
+      "@/*": ["./*"]
     }
   },
-  "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx",
-    ".next/types/**/*.ts",
-    "**/*.test.tsx"
-  ],
-  "exclude": [
-    "node_modules",
-    "./cypress.config.ts"
-  ]
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "**/*.test.tsx"],
+  "exclude": ["node_modules", "./cypress.config.ts"]
 }
