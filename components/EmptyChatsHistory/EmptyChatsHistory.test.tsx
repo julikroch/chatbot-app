@@ -4,7 +4,7 @@ import { UserProvider } from '@/provider';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { render, screen } from '@testing-library/react';
 
-import { EmptyChatHistory } from './EmptyChatHistory';
+import { EmptyChatsHistory } from './EmptyChatsHistory';
 
 const queryClient = new QueryClient();
 
@@ -13,7 +13,7 @@ describe('EmptyChatHistory', () => {
     render(
       <QueryClientProvider client={queryClient}>
         <UserProvider>
-          <EmptyChatHistory />
+          <EmptyChatsHistory isEditable />
         </UserProvider>
       </QueryClientProvider>,
     );

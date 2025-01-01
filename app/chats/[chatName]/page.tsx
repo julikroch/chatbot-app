@@ -6,6 +6,9 @@ import { useForm } from 'react-hook-form';
 import type * as z from 'zod';
 import { useCreateNewMessage, useGetChat } from '@/common/api';
 import { CommonPathnames, RqKeys } from '@/common/enums';
+import { customToast } from '@/common/utils';
+import { ChatHistory } from '@/components/ChatHistory';
+import { EmptyChat } from '@/components/EmptyChat';
 import {
   Button,
   Card,
@@ -23,12 +26,10 @@ import {
   Separator,
   Spinner,
 } from '@/components/ui';
-import { customToast } from '@/common/utils';
 import { useUser } from '@/context';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useQueryClient } from '@tanstack/react-query';
 
-import { ChatHistory, EmptyChat } from './components';
 import { ChatboxFormNames } from './enums';
 import { formSchema } from './schema';
 

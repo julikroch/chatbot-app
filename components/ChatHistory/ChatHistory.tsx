@@ -1,7 +1,7 @@
 import type { FC } from 'react';
 import { MessageAuthor } from '@/common/enums';
 import type { Message } from '@/common/types';
-import { customDateForMessages } from '@/common/utils';
+import { customDateFormat } from '@/common/utils';
 import { Avatar, AvatarFallback } from '@/components/ui';
 
 interface IProps {
@@ -34,7 +34,7 @@ export const ChatHistory: FC<IProps> = ({ message, userName }) => {
         >
           {message.content}
           <span className="text-xs block text-right mt-1">
-            {customDateForMessages(message.createdAt)}
+            {customDateFormat(message.createdAt)}
           </span>
         </div>
       </div>

@@ -3,22 +3,23 @@ import type { Chat } from '@/common/types';
 import { Spinner } from '@/components/ui';
 import { useUser } from '@/context';
 
-import { ChatsCard } from './ChatsCard';
-import { NewChatForm } from './NewChatForm';
+import { ChatsCard } from '../ChatsCard/ChatsCard';
+import { NewChatForm } from '../NewChatForm';
 
 interface IProps {
   isLoading: boolean;
+  isEditable: boolean;
   data?: {
     chats: Chat[] | null;
     error: string | null;
   };
 }
 
-export const ChatHistory: FC<IProps> = ({ isLoading, data }) => {
+export const ChatsHistory: FC<IProps> = ({ isLoading, data, isEditable }) => {
   const { user } = useUser();
 
   return (
-    <div className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+    <div className="max-w-8xl mx-auto py-6 sm:px-6 lg:px-8">
       <div className="space-y-6">
         <h2 className="text-2xl font-bold">{user}&apos;s previous chats</h2>
         {isLoading ? (
@@ -27,9 +28,9 @@ export const ChatHistory: FC<IProps> = ({ isLoading, data }) => {
           </div>
         ) : (
           <>
-            <NewChatForm />
+            {isEditable && <NewChatForm />}
             <div className="grid xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-              {data?.chats?.map(chat => <ChatsCard key={chat.chatName} chat={chat} />)}
+              {data?.chats?.map(chat => <ChatsCard isEditable={isEditable} key={chat.chatName} chat={chat} />)}
             </div>
           </>
         )}

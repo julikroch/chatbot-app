@@ -4,10 +4,10 @@ import { ChevronRight } from 'lucide-react';
 import { redirect } from 'next/navigation';
 import { useGetChats } from '@/common/api';
 import { CommonPathnames } from '@/common/enums';
+import { ChatsHistory } from '@/components/ChatsHistory';
+import { EmptyChatsHistory } from '@/components/EmptyChatsHistory';
 import { Link } from '@/components/ui';
 import { useUser } from '@/context/UserContext';
-
-import { ChatHistory, EmptyChatHistory } from './components';
 
 export default function Chats() {
   const { user } = useUser();
@@ -35,9 +35,9 @@ export default function Chats() {
       </header>
       <main>
         {!data?.chats?.length && !isLoading ? (
-          <EmptyChatHistory />
+          <EmptyChatsHistory isEditable />
         ) : (
-          <ChatHistory isLoading={isLoading} data={data} />
+          <ChatsHistory isEditable isLoading={isLoading} data={data} />
         )}
       </main>
     </div>

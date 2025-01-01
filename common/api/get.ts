@@ -5,6 +5,24 @@ import type { Chat, User } from '../types';
 import { logger } from '../utils';
 import { apiClient } from './apiClient';
 
+export const getUsers = async (): Promise<{ users: User[] | null; error: string | null }> => {
+  try {
+    const response = await apiClient.get<User[]>(CommonEndpoints.Users);
+
+    const users: User[] = response.data;
+
+    return { users, error: null };
+  } catch (error) {
+    logger.error(`Error fetching users: ${error as string}`);
+
+    if (axios.isAxiosError(error) && error.response) {
+      return { users: null, error: error.response.data.error };
+    }
+
+    return { users: null, error: (error as Error).message };
+  }
+};
+
 export const getUser = async (
   userName: string,
 ): Promise<{ user: User | null; error: string | null }> => {

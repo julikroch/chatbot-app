@@ -26,8 +26,8 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { DialogDescription } from '@radix-ui/react-dialog';
 import { useQueryClient } from '@tanstack/react-query';
 
-import { NewChatFormNames } from '../enums';
-import { formSchema } from '../schema';
+import { NewChatFormNames } from './enums';
+import { formSchema } from './schema';
 
 export const NewChatForm = () => {
   const [openDialog, setOpenDialog] = useState(false);

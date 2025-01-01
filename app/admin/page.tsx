@@ -1,55 +1,39 @@
-import type { Chat } from '@/common/types';
+import { getUsers } from '@/common/api/get';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui';
 
-async function getChatHistories(): Promise<Chat[]> {
-  // Check this URL
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/user`, {
-    cache: 'no-store',
-  });
-
-  if (!response.ok) {
-    throw new Error('Failed to fetch chat histories');
-  }
-
-  return response.json();
-}
+import { UsersCard } from './UsersCard';
 
 export default async function AdminPage() {
-  let chats: Chat[] | null = null;
-  let error: string | null = null;
+  const { users, error } = await getUsers();
 
-  try {
-    chats = await getChatHistories();
-  } catch (e) {
-    error = 'Failed to load chat histories. Please try again later.';
-  }
-
-  if (error) {
+  if (error || !users) {
     return (
       <Alert variant="destructive">
         <AlertTitle>Error</AlertTitle>
-        <AlertDescription>{error}</AlertDescription>
+        <AlertDescription>
+          {error ?? 'An error occurred while getting the users. Please try again later.'}
+        </AlertDescription>
       </Alert>
     );
   }
 
-  if (!chats || chats.length === 0) {
+  if (!users.length) {
     return (
       <Alert>
-        <AlertTitle>No chat histories found</AlertTitle>
-        <AlertDescription>Start a new chat to see it here.</AlertDescription>
+        <AlertTitle>No users found</AlertTitle>
+        <AlertDescription>Please create a user to start seeing the list</AlertDescription>
       </Alert>
     );
   }
 
-  // return (
-  //   <div className="space-y-6">
-  //     <h2 className="text-2xl font-bold">Chat Histories</h2>
-  //     <div className="grid gap-4">
-  //       {chats.map(chat => (
-  //         <ChatHistoryCard key={chat.id} chat={chat} />
-  //       ))}
-  //     </div>
-  //   </div>
-  // );
+  return (
+    <div className="space-y-6">
+      <h2 className="text-2xl font-bold">Users</h2>
+      <div className="grid xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+        {users.map(user => (
+          <UsersCard key={user.userName} user={user} />
+        ))}
+      </div>
+    </div>
+  );
 }
