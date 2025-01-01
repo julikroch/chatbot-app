@@ -1,5 +1,5 @@
 import { type NextRequest, NextResponse } from 'next/server';
-import { BOT_RESPONSES } from '@/common/constants';
+import { generateBotResponse } from '@/common/utils/generateBotResponse';
 import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
@@ -93,11 +93,9 @@ export async function POST(
       },
     });
 
-    const randomBotResponse = BOT_RESPONSES[Math.floor(Math.random() * BOT_RESPONSES.length)];
-
     const botMessage = await prisma.message.create({
       data: {
-        content: randomBotResponse,
+        content: generateBotResponse(),
         author: 'bot',
         chat: {
           connect: {

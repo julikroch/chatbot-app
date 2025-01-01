@@ -1,5 +1,10 @@
 import { toast } from 'sonner';
 
+/**
+ * Generate custom error toast
+ * @param message - error message
+ */
+
 export const customToast = (message: string) =>
   toast.error(message, {
     style: {

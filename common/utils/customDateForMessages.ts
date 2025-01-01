@@ -1,3 +1,9 @@
+/**
+ * Custom date format for messages
+ * @param date - date string
+ * @returns formatted date
+ */
+
 export const customDateFormat = (date: string) =>
   new Date(date).toLocaleDateString('en-US', {
     weekday: 'short',
