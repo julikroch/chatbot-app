@@ -1,18 +1,29 @@
+import { generateRandomString } from '../utils';
+
 describe('New message page', () => {
-  it('should send a new message', () => {
-    cy.visit('/');
+  const randomUserName = generateRandomString();
+  const randomChatName = generateRandomString();
 
-    cy.get('input[name="userName"]').type('julian');
+  beforeEach(() => {
+    cy.visit('/register');
+    cy.get('input[name="userName"]').type(randomUserName);
     cy.get('button[type="submit"]').click();
-
     cy.url().should('include', '/chats');
     cy.contains('Your chats').should('be.visible');
 
-    cy.contains('My first chat').click();
+    cy.contains('New chat').click();
+    cy.get('input[name="chatName"]').type(randomChatName);
+    cy.get('button[type="submit"]').click();
+    cy.contains(randomChatName).should('be.visible');
+  });
 
-    cy.get('input[name="message"]').type('Hello, world!');
+  it('should send a new message', () => {
+    cy.contains(randomChatName).click();
+
+    const messageContent = 'Hello, world!';
+    cy.get('input[name="message"]').type(messageContent);
     cy.get('button[type="submit"]').click();
 
-    cy.contains('Hello, world!').should('be.visible');
+    cy.contains(messageContent).should('be.visible');
   });
 });

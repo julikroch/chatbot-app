@@ -27,7 +27,7 @@ export default async function AdminPage() {
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 py-6 sm:px-6 lg:px-8">
       <h2 className="text-2xl font-bold">Users</h2>
       <div className="grid xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
         {users.map(user => (

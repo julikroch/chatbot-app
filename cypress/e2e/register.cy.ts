@@ -1,10 +1,14 @@
 import { generateRandomString } from '../utils';
 
-describe('Register page', () => {
-  it('should register a new user', () => {
-    cy.visit('/register');
+const randomUserName = generateRandomString();
 
-    cy.get('input[name="userName"]').type(generateRandomString());
+describe('Register page', () => {
+  beforeEach(() => {
+    cy.visit('/register');
+  });
+
+  it('should register a new user', () => {
+    cy.get('input[name="userName"]').type(randomUserName);
     cy.get('button[type="submit"]').click();
 
     cy.url().should('include', '/chats');
@@ -13,11 +17,14 @@ describe('Register page', () => {
   });
 
   it('should not register a user with an existing username', () => {
-    cy.visit('/register');
+    cy.get('input[name="userName"]').type(randomUserName);
+    cy.get('button[type="submit"]').click();
 
-    cy.get('input[name="userName"]').type('julian');
+    cy.visit('/register');
+    cy.get('input[name="userName"]').type(randomUserName);
     cy.get('button[type="submit"]').click();
 
     cy.url().should('include', '/register');
+    cy.contains('User already exists').should('be.visible');
   });
 });
