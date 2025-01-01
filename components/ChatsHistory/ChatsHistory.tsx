@@ -30,7 +30,9 @@ export const ChatsHistory: FC<IProps> = ({ isLoading, data, isEditable }) => {
           <>
             {isEditable && <NewChatForm />}
             <div className="grid xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-              {data?.chats?.map(chat => <ChatsCard isEditable={isEditable} key={chat.chatName} chat={chat} />)}
+              {data?.chats?.map(chat => (
+                <ChatsCard isEditable={isEditable} key={chat.chatName} chat={chat} />
+              ))}
             </div>
           </>
         )}
