@@ -16,6 +16,18 @@ pnpm install
 bun install
 ```
 
+### Environment Variables
+
+Create a `.env` file in the root folder based on `.env.example`. You can do it manually, or with the following command:
+
+```bash
+cp .env.example .env
+```
+
+Then, update the `.env` file with your specific environment variables.
+
+### Running the Development Server
+
 Then, run the development server:
 
 ```bash
